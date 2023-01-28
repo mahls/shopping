@@ -23,7 +23,7 @@ const Navigation = () => {
   return (
     <>
       
-      <div className="bg-stone-900 h-10 flex justify-between items-center px-5 py-5 text-white">
+      <div className="bg-stone-900 h-16 flex justify-between items-center px-5 py-5 text-white">
         
         <div className="align-middle justify-items-center">
           <NavLink  onClick={()=>setnavOpen(false)}  to="/">LOGO</NavLink>
@@ -37,7 +37,7 @@ const Navigation = () => {
         
       </div>
         
-      <div className={`overflow-x-hidden z-50 bg-stone-600 h-screen w-96 absolute right-0 flex flex-col transition ease-in-out delay-150 duration-300 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`overflow-x-hidden overflow-hidden z-50 bg-stone-600 h-screen w-96 absolute right-0 flex flex-col transition ease-in-out delay-50 duration-100 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         
         <CartItem/>
         

@@ -31,6 +31,7 @@ function App() {
     <div>
       <BrowserRouter>
         <CartContext>
+          <AnimatePresence exitBeforeEnter>
           <Routes>
             <Route path="/" element={<Layout/>}> 
                 <Route index element={<Home/>}/>
@@ -40,6 +41,7 @@ function App() {
                 <Route path="*" element={<NoPage/>}/>
             </Route>
           </Routes>
+          </AnimatePresence>
         </CartContext>
       </BrowserRouter>
     </div>

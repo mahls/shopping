@@ -1,5 +1,5 @@
 import React from 'react'
-import banner from '../assets/banner.jpg'
+import redbanner from '../assets/redbanner.jpg'
 import {motion} from 'framer-motion'
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
-      <img src={banner} className="w-screen h-52"/>
+      <img src={redbanner} className="w-screen h-52"/>
     </motion.div>
   )
 }
