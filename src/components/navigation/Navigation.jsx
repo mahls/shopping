@@ -3,6 +3,8 @@ import {useState} from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import {NavLink} from 'react-router-dom'
 import {useContext} from 'react'
 import CartItem from './CartItem.jsx'
@@ -23,21 +25,25 @@ const Navigation = () => {
   return (
     <>
       
-      <div className="bg-stone-900 h-16 flex justify-between items-center px-5 py-5 text-white">
+      <div className="bg-stone-900 h-16 flex justify-between items-center px-10 py-5 text-stone-400">
         
         <div className="align-middle justify-items-center">
           <NavLink  onClick={()=>setnavOpen(false)}  to="/">LOGO</NavLink>
         </div>
         
-        <div className="flex justify-between w-52">
-          <NavLink to="/Products">Products</NavLink>
+        <div className="flex justify-between">
+
+          <NavLink onClick={()=>setnavOpen(false)} className="pr-2" to="/">Home</NavLink>
+          <NavLink onClick={()=>setnavOpen(false)} className="pr-2" to="/Checkout">Checkout</NavLink>
+          <NavLink onClick={()=>setnavOpen(false)} className="pr-2" to="/contact">Support</NavLink>  
+          <NavLink onClick={()=>setnavOpen(false)} className="pr-2" to="/products">Products</NavLink>
           <NightlightRoundIcon className="cursor-pointer" onClick={toggleTheme}/>
-          <ShoppingCartIcon className="cursor-pointer" onClick={toggleNav}/>
+          <ShoppingCartIcon className="cursor-pointer ml-2"  onClick={toggleNav}/>
         </div>
         
       </div>
         
-      <div className={`overflow-x-hidden overflow-hidden z-50 bg-stone-600 h-screen w-96 absolute right-0 flex flex-col transition ease-in-out delay-50 duration-100 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={` z-50 bg-stone-700 h-screen w-3/6 absolute right-0 flex flex-col transition ease-in-out delay-50 duration-100 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         
         <CartItem/>
         

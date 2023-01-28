@@ -17,6 +17,7 @@ import NoPage from './pages/NoPage.jsx'
 import Product from './pages/Product.jsx'
 import Products from './pages/Products.jsx'
 import Checkout from './pages/Checkout.jsx'
+import Contact from './pages/Contact.jsx'
 
 // components
 import Navigation from './components/navigation/Navigation.jsx'
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/product:id" element={<Product/>}/>
                 <Route path="/checkout" element={<Checkout/>}/>
+                <Route path="/contact" element={<Contact/>}/>
                 <Route path="*" element={<NoPage/>}/>
             </Route>
           </Routes>
