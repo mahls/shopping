@@ -3,7 +3,7 @@ import {createContext} from 'react';
 
 const ShopCartContext = createContext(null);
 
-let cartItems = [{item:"fishing", item:"dancing"}];
+let cartItems = [{item:"fishing", item2:"dancing"}];
 
 const CartContext = ({children}) => {
   return (
@@ -14,3 +14,7 @@ const CartContext = ({children}) => {
 }
 
 export default CartContext
+
+
+
+

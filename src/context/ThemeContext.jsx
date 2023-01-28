@@ -13,4 +13,4 @@ const ThemeContext = ({children}) => {
   )
 }
 
-export default CartContext
+export default ThemeContext
