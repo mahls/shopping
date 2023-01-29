@@ -9,7 +9,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 const ProductCard = ({id, name, image, price, description, notification, setnotification}) => {
 
-  const [loading, setloading] = useState(false)
+  const [loading, setloading] = useState(true)
   
   let addToCart=()=>{
     console.log("added to cart...");
@@ -28,7 +28,6 @@ const ProductCard = ({id, name, image, price, description, notification, setnoti
   };
   
   useEffect(() => {
-    setloading(true);
     setTimeout(() => {
       setloading(false);
     }, 3000);
@@ -40,28 +39,29 @@ const ProductCard = ({id, name, image, price, description, notification, setnoti
     hideProgressBar: true,
     theme: "dark",
 
-  });
-
+  })
   
   return (
     <> 
     { loading ? 
 
-      <div className = "mt-10 mx-5 w-72">
-      <Skeleton variant="rounded" sx={{ bgcolor: 'grey.800' }}  width={220} height={190} />
+      <div className = "mt-5 mx-5 w-72">
+      <Skeleton variant="rectangular" sx={{ bgcolor: 'grey.800' }}  width={220} height={180} />
       <hr className="opacity-0 h-1"/>
-      <Skeleton variant="rounded"  sx={{ bgcolor: 'grey.800' }} width={220} height={50} />
+      <Skeleton variant="rectangular"  sx={{ bgcolor: 'grey.800' }} width={220} height={25} />
+      <hr className="opacity-0 h-1"/>
+      <Skeleton variant="rectangular"  sx={{ bgcolor: 'grey.800' }} width={220} height={45} />
       </div>
 
       :
 
     <div 
-      className="bg-stone-700 h-80 shadow-xl rounded mt-10 mx-5 flex  flex-col justify-center w-72 py-5 text-white"
+      className="bg-stone-800 h-80 shadow-xl mt-10 mx-5 flex  flex-col justify-center w-72 py-5 text-white"
     >
       <ToastContainer className="z-50"/>
       
       <div className="flex align-center justify-center ">
-       <Link to={`product/${id}`}><img src={image} className="rounded w-72 h-60 cursor-pointer"/> </Link>
+       <Link to={`/products/product/${id}`}><img src={image} className="w-72 h-60 cursor-pointer"/> </Link>
       </div>
        
       <div className=" font-bold flex align-center justify-center border-stone-600 border-b-2 pt-2 pb-2">
@@ -70,7 +70,7 @@ const ProductCard = ({id, name, image, price, description, notification, setnoti
       
         <div className="flex justify-between px-10 mb-7 mt-3">
 
-          <div className="bg-blue-600 font-bold text-white cursor-pointer rounded py-1 px-1" onClick={notify}>
+          <div className="bg-blue-900 font-bold text-white cursor-pointer rounded py-1 px-1" onClick={notify}>
               add to cart <AddShoppingCartIcon/>
           </div>
         

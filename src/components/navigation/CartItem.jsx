@@ -1,10 +1,30 @@
 import React from 'react'
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+import CloseIcon from '@mui/icons-material/Close';
+import {useContext} from 'react'
 
 const CartItem = () => {
+
+  // take in props for item
+  // import cart context and write functions add minus and clear
+  
+  let incrementItem=()=>{
+
+  };
+  
+  let decrementItem=()=>{
+
+  };
+  
+  let removeItem=()=>{
+
+  };
+   
+
+
   return (
-    <div className="h-20 text-white bg-stone-900 rounded m-4 p-2 flex justify-between align-center items-center px-10">
+    <div className="h-20 text-white bg-stone-900 rounded m-4 p-2 flex justify-between align-center items-center px-10 cursor-pointer">
       
       <div>
         image
@@ -16,16 +36,22 @@ const CartItem = () => {
       
       <div className="flex">
 
-        <div>     
-          <button><AddBoxIcon/></button>
-        </div>
-        
+
         <div className="px-5 font-bold">
           <p>2</p>
         </div>
 
-        <div> 
+        <div onClick={incrementItem}>     
+          <button><AddBoxIcon/></button>
+        </div>
+        
+
+        <div onClick={decrementItem}> 
           <button><IndeterminateCheckBoxIcon/></button>
+        </div>
+        
+        <div>
+          <CloseIcon onClick={removeItem} className="cursor-pointer"/>
         </div>
 
       </div>

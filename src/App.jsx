@@ -34,10 +34,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout/>}> 
                 <Route index element={<Home/>}/>
-                <Route path="/products"     element={<Products/>}/>
-                <Route path="/product:id"   element={<Product/>}/>
-                <Route path="/checkout"     element={<Checkout/>}/>
-                <Route path="/contact"    activeClassName="" element={<Contact/>}/>
+                <Route path="/products" element={<Products/>}/>
+                <Route path="/products/product/:id"  element={<Product/>}/>
+                <Route path="/checkout" element={<Checkout/>}/>
+                <Route path="/contact"  element={<Contact/>}/>
                 <Route path="*" element={<NoPage/>}/>
             </Route>
           </Routes>
@@ -51,3 +51,5 @@ function App() {
 }
 
 export default App
+
+

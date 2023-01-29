@@ -78,8 +78,8 @@
     id: "1483493",
     name:"t-shirt10",
     image:"https://plus.unsplash.com/premium_photo-1661576995732-bd66c05409e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODR8fHQlMjBzaGlydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60",
-    price:"$28",
-    description: "normal t shirt"
+    price:"$2",
+    description: "smelly t shirt"
   }
 
 ];
