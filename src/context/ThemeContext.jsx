@@ -1,16 +1,15 @@
 import React from 'react'
-import {createContext} from 'react';
+import {createContext, useState} from 'react';
 
-const ThemeTypeContext = createContext(null);
+const ThemeContext = createContext();
 
-let theme = false;
-
-const ThemeContext = ({children}) => {
+export function ThemeProvider({children}){
+  const [dark, setdark] = useState(false);
   return (
-    <ThemeTypeContext.Provider value={theme}>
+    <ThemeContext.Provider value={ {theme: {dark}, setdark: {setdark} }}>
       {children}
-    </ThemeTypeContext.Provider>
+    </ThemeContext.Provider>
   )
 }
 
-export default ThemeContext
+export default ThemeContext;

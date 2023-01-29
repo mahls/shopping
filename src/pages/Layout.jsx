@@ -10,7 +10,7 @@ const Layout = () => {
       
       <Navigation/>
       
-      <div className="h-screen">
+      <div className="">
         <Outlet/>
       </div>
       

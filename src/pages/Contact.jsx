@@ -11,11 +11,11 @@ const Contact = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-      className="flex justify-center flex-col align-center items-center"
+      className="flex justify-center flex-col align-center items-center mb-52"
     >
       
       <motion.div 
-        className="text-stone-400 mt-20 mb-10 text-xl"
+        className="text-stone-400 mt-20 mb-10 text-3xl"
       initial={{ opacity: 0, x:-300 }}
       animate={{ opacity: 1, x:0 }}
       exit={{ opacity: 0 }}

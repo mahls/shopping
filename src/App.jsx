@@ -4,9 +4,6 @@ import { useState } from 'react'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {AnimatePresence} from 'framer-motion'
 
-// icons
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm'
-
 // data
 import shopProducts from './data.js'
 
@@ -20,32 +17,34 @@ import Checkout from './pages/Checkout.jsx'
 import Contact from './pages/Contact.jsx'
 
 // components
-import Navigation from './components/navigation/Navigation.jsx'
+import Navigation from './components/navigation/Navigation'
 
 // context 
-import CartContext from './context/CartContext.jsx'
-import ThemeContext from './context/ThemeContext.jsx'
+import {CartProvider} from './context/CartContext'
+import {ThemeProvider} from './context/ThemeContext'
 
 function App() {
 
   return (
-    <div>
+    <div clasName="">
+    <CartProvider>
+    <ThemeProvider>
       <BrowserRouter>
-        <CartContext>
           <AnimatePresence exitBeforeEnter>
           <Routes>
             <Route path="/" element={<Layout/>}> 
                 <Route index element={<Home/>}/>
-                <Route path="/products" element={<Products/>}/>
-                <Route path="/product:id" element={<Product/>}/>
-                <Route path="/checkout" element={<Checkout/>}/>
-                <Route path="/contact" element={<Contact/>}/>
+                <Route path="/products"     element={<Products/>}/>
+                <Route path="/product:id"   element={<Product/>}/>
+                <Route path="/checkout"     element={<Checkout/>}/>
+                <Route path="/contact"    activeClassName="" element={<Contact/>}/>
                 <Route path="*" element={<NoPage/>}/>
             </Route>
           </Routes>
           </AnimatePresence>
-        </CartContext>
       </BrowserRouter>
+    </ThemeProvider>
+    </CartProvider>
     </div>
   )
 

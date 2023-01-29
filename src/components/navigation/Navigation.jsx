@@ -34,7 +34,7 @@ const Navigation = () => {
         <div className="flex justify-between">
 
           <NavLink onClick={()=>setnavOpen(false)} className="pr-2" to="/">Home</NavLink>
-          <NavLink onClick={()=>setnavOpen(false)} className="pr-2" to="/Checkout">Checkout</NavLink>
+          <NavLink onClick={()=>setnavOpen(false)} className="pr-2" to="/checkout">Checkout</NavLink>
           <NavLink onClick={()=>setnavOpen(false)} className="pr-2" to="/contact">Support</NavLink>  
           <NavLink onClick={()=>setnavOpen(false)} className="pr-2" to="/products">Products</NavLink>
           <NightlightRoundIcon className="cursor-pointer" onClick={toggleTheme}/>
@@ -43,7 +43,7 @@ const Navigation = () => {
         
       </div>
         
-      <div className={` z-50 bg-stone-700 h-screen w-3/6 absolute right-0 flex flex-col transition ease-in-out delay-50 duration-100 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={` z-50 bg-stone-700 h-screen w-96 absolute right-0 flex flex-col transition ease-in-out delay-50 duration-100 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         
         <CartItem/>
         
