@@ -10,7 +10,7 @@ import logo from '../../assets/logo.png'
 
 const Footer = () => {
   return (
-    <div className="bg-stone-900 flex justify-between align-center items-center h-52 text-white px-10 py-5 text-stone-500">
+    <div className="bg-stone-800 flex justify-between align-center items-center h-52 text-white px-10 py-5 text-stone-500">
 
       <div className=" text-xl text-stone-500">
        

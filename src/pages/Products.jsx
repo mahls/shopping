@@ -1,4 +1,5 @@
 import React from 'react'
+import {useState} from 'react'
 import ProductCard from '../components/product/ProductCard'
 import AddCartNotification from '../components/addCartNotification/AddCartNotification.jsx'
 import banner from '../assets/banner.jpg'
@@ -8,6 +9,8 @@ import shopProducts from '../data.js'
 const Products = () => {
 
   console.log(shopProducts);
+  
+  const [notification, setnotification] = useState(false)
 
 
   return (
@@ -19,6 +22,9 @@ const Products = () => {
       transition={{duration: 1}}
       className="mb-20"
     >
+      
+      {notification && <AddCartNotification notification={notification}/> }
+        
       
       <div className="mt-10 h-52 bg-blue-500 mb-10">
         <img src={banner} className=" h-52 w-screen"/>
@@ -34,6 +40,8 @@ const Products = () => {
                     image={product.image}
                     price={product.price}
                     description={product.description} 
+                    notification={notification}
+                    setnotification={setnotification}
                     key={product.id}
                   />
            )
