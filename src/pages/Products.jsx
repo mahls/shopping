@@ -9,8 +9,6 @@ import shopProducts from '../data.js'
 import Skeleton from '@mui/material/Skeleton';
 
 const Products = () => {
-
-  console.log(shopProducts);
   
   const [notification, setnotification] = useState(false);
   const [loading, setloading] = useState(true);
@@ -18,7 +16,7 @@ const Products = () => {
   useEffect(() => {
     setTimeout(() => {
       setloading(false);
-    }, 2000);
+    }, 1500);
   }, [])
 
   return (
@@ -40,7 +38,7 @@ const Products = () => {
       </div> 
         :  
         <div className="mt-10 h-52 bg-blue-500 mb-10">
-          <img src={summerBanner} className=" h-52 w-screen"/>
+          <img src={summerBanner} className=" h-52 w-screen cursor-pointer"/>
         </div>
     }
       <div className="h-screen overflow-y-scroll">
@@ -53,7 +51,8 @@ const Products = () => {
                     name={product.name}
                     image={product.image}
                     price={product.price}
-                    description={product.description} 
+                    description={product.description}
+                    rating={product.rating}
                     notification={notification}
                     setnotification={setnotification}
                     key={product.id}

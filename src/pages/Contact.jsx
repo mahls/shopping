@@ -20,13 +20,11 @@ const Contact = () => {
       animate={{ opacity: 1, x:0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-        
-        
       >
         Still need help?
       </motion.div>
 
-      <div claName="">
+      <div className="">
       <motion.div
         initial={{ opacity: 0, x:300 }}
         animate={{ opacity: 1, x:0 }}

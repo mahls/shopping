@@ -7,9 +7,20 @@ import Skeleton from '@mui/material/Skeleton';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
-const ProductCard = ({id, name, image, price, description, notification, setnotification}) => {
+const ProductCard = ({id, name, image, price, description, rating, notification, setnotificationm}) => {
 
-  const [loading, setloading] = useState(true)
+  const [loading, setloading] = useState(true);
+  
+  let productDataObj = {
+    id: id,
+    name: name,
+    image: image,
+    price: price,
+    description: description,
+    rating: rating,
+  }
+
+  const [productData, setProductData] = useState(productDataObj);
   
   let addToCart=()=>{
     console.log("added to cart...");
@@ -30,7 +41,7 @@ const ProductCard = ({id, name, image, price, description, notification, setnoti
   useEffect(() => {
     setTimeout(() => {
       setloading(false);
-    }, 3000);
+    }, 2000);
   }, [])
 
   const notify = () => toast(`${name} added to cart`, {
@@ -61,7 +72,7 @@ const ProductCard = ({id, name, image, price, description, notification, setnoti
       <ToastContainer className="z-50"/>
       
       <div className="flex align-center justify-center ">
-       <Link to={`/products/product/${id}`}><img src={image} className="w-72 h-60 cursor-pointer"/> </Link>
+       <Link to={`/products/product/${id}`} state={{productData}}><img src={image} className="w-72 h-60 cursor-pointer"/> </Link>
       </div>
        
       <div className=" font-bold flex align-center justify-center border-stone-600 border-b-2 pt-2 pb-2">
@@ -70,7 +81,7 @@ const ProductCard = ({id, name, image, price, description, notification, setnoti
       
         <div className="flex justify-between px-10 mb-7 mt-3">
 
-          <div className="bg-blue-900 font-bold text-white cursor-pointer rounded py-1 px-1" onClick={notify}>
+          <div className="bg-blue-900 font-bold text-white cursor-pointer py-1 px-1" onClick={notify}>
               add to cart <AddShoppingCartIcon/>
           </div>
         

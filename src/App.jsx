@@ -26,7 +26,7 @@ import {ThemeProvider} from './context/ThemeContext'
 function App() {
 
   return (
-    <div clasName="">
+    <div className="">
     <CartProvider>
     <ThemeProvider>
       <BrowserRouter>

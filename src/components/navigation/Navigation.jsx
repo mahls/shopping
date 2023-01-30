@@ -30,7 +30,7 @@ const Navigation = () => {
   return (
     <>
       
-      <div className="bg-stone-800 h-16 flex justify-between items-center px-10 py-5 text-stone-400 border-b-2 border-blue-400">
+      <div className="bg-stone-800 h-16 flex justify-between items-center px-10 py-5 text-stone-400 border-b-2 border-blue-600">
         
         <div className="align-middle justify-items-center">
           <NavLink onClick={()=>setnavOpen(false)} to="/"><p className="font-bold text-white">LOGO</p></NavLink>

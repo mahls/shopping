@@ -20,11 +20,9 @@ const CartItem = () => {
   let removeItem=()=>{
 
   };
-   
-
-
+ 
   return (
-    <div className="h-20 text-white bg-stone-900 rounded m-4 p-2 flex justify-between align-center items-center px-10 cursor-pointer">
+    <div className="h-20 text-white bg-stone-900 m-4 p-2 flex justify-between align-center items-center px-10 cursor-pointer">
       
       <div>
         image
