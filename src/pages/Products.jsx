@@ -34,11 +34,11 @@ const Products = () => {
       
     { loading ? 
       <div className = "mt-10 h-52 mb-10 w-screen">
-      <Skeleton variant="rectangular" sx={{ bgcolor: 'grey.800' }}  width={10000} height={155} />
+      <Skeleton variant="rectangular" sx={{ bgcolor: 'grey.800' }}  width={10000} height={185} />
       </div> 
         :  
-        <div className="mt-10 h-52 bg-blue-500 mb-10">
-          <img src={summerBanner} className=" h-52 w-screen cursor-pointer"/>
+        <div className="mt-10 h-60 bg-blue-500 mb-5">
+          <img src={summerBanner} className=" h-60 w-screen cursor-pointer"/>
         </div>
     }
       <div className="h-screen overflow-y-scroll">

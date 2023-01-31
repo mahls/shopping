@@ -66,6 +66,15 @@ const Product = () => {
     );
   }
 
+  let ShowTwoStar=()=>{
+    return(
+      <>
+        <StarIcon/> <StarIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/>
+      </>
+    );
+  }
+
+
   let ShowThreeStar=()=>{
     return(
       <>
@@ -89,8 +98,6 @@ const Product = () => {
       </>
     );
   }
-
-
  
   return (
     
@@ -101,14 +108,14 @@ const Product = () => {
       transition={{ duration: 1 }}  
       className="h-screen text-white"
     >
-      <div className="flex justify-between px-52 mt-20">
+      <div className="flex justify-between px-64 mt-32">
         
         <Carousel itemData={itemData}/>  
         
-        <div className="">
+        <div className="ml-10">
           
-          <div className="font-bold text-2xl">
-            {itemData.name}
+          <div>
+            <p className="font-bold text-4xl">{itemData.name}</p>
           </div>
           
           <div className="mt-5">
@@ -169,8 +176,6 @@ const Product = () => {
         </div>    
       
       </div>
-
-
 
     </motion.div>
   )

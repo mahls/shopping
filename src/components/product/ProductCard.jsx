@@ -54,41 +54,42 @@ const ProductCard = ({id, name, image, price, description, rating, notification,
   
   return (
     <> 
-    { loading ? 
+    { 
+      loading ? 
 
-      <div className = "mt-5 mx-5 w-72">
-      <Skeleton variant="rectangular" sx={{ bgcolor: 'grey.800' }}  width={220} height={180} />
-      <hr className="opacity-0 h-1"/>
-      <Skeleton variant="rectangular"  sx={{ bgcolor: 'grey.800' }} width={220} height={25} />
-      <hr className="opacity-0 h-1"/>
-      <Skeleton variant="rectangular"  sx={{ bgcolor: 'grey.800' }} width={220} height={45} />
+      <div className = "mt-24 mx-5 w-80 h-96 w-80">
+        <Skeleton variant="rectangular" sx={{ bgcolor: 'grey.800' }}  width={237} height={182} />
+        <hr className="opacity-0 h-1"/>
+        <Skeleton variant="rectangular"  sx={{ bgcolor: 'grey.800' }} width={237} height={145} />
       </div>
 
       :
 
-    <div 
-      className="bg-stone-800 h-80 shadow-xl mt-10 mx-5 flex  flex-col justify-center w-72 py-5 text-white"
-    >
-      <ToastContainer className="z-50"/>
+      <div 
+        className="bg-stone-800 shadow-xl mt-32 mx-5 flex h-96 flex-col justify-center w-80 text-white "
+      >
+        <ToastContainer/>
       
-      <div className="flex align-center justify-center ">
-       <Link to={`/products/product/${id}`} state={{productData}}><img src={image} className="w-72 h-60 cursor-pointer"/> </Link>
-      </div>
-       
-      <div className=" font-bold flex align-center justify-center border-stone-600 border-b-2 pt-2 pb-2">
-        {description}
-      </div>
-      
-        <div className="flex justify-between px-10 mb-7 mt-3">
-
-          <div className="bg-blue-900 font-bold text-white cursor-pointer py-1 px-1" onClick={notify}>
-              add to cart <AddShoppingCartIcon/>
-          </div>
+        <div className="flex align-center justify-center ">
+          <Link to={`/products/product/${id}`} state={{productData}}><img src={image} className="w-80 h-60 cursor-pointer"/> </Link>
+        </div>
         
-          <div className="font-bold rounded py-1 px-1">
-            {price}
-          </div>
+        <div className="px-6">    
+           <div className="mt-4">
+             <p className="font-bold text-2xl">{name}</p>
+           </div>
 
+           <div>
+             <p className="text-lg text-stone-300 mt-1">{description}</p>
+           </div>
+
+           <div className="flex justify-center mt-4">
+             <p className="font-bold text-xl">{price}</p>
+           </div>
+           
+           <div onClick={notify} className="flex justify-center mb-20 mt-2">
+             <button className="bg-blue-900 py-1 text-xl font-bold w-full mt-2">Add to Cart <AddShoppingCartIcon/></button>
+           </div>
         </div>
 
     </div>

@@ -11,7 +11,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 const Carousel = ({itemData}) => {
-
+  
+  const [showModal, setShowModal] = useState(false);
 
   console.log(itemData);
 
@@ -22,14 +23,14 @@ const Carousel = ({itemData}) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}  
-      className="h-screen text-white"
+      className="h-screen text-white w-3/5 h-96 mr-20"
     >
 
-    <div className="w-96">
+    <div className="">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={50}
-        slidesPerView={3}
+        spaceBetween={5}
+        slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
@@ -40,15 +41,16 @@ const Carousel = ({itemData}) => {
           <img src={itemData.image} className="h-52 w-54 cursor-pointer"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={itemData.image} className="h-52 w-54"/>
+          <img src={itemData.image} className="h-52 w-54 cursor-pointer"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={itemData.image} className="h-52 w-54"/>
+          <img src={itemData.image} className="h-52 w-54 cursor-pointer"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={itemData.image} className="h-52 w-54"/>
+          <img src={itemData.image} className="h-52 w-54 cursor-pointer"/>
         </SwiperSlide>
       </Swiper>
+
     </div>
 
     </motion.div>

@@ -2,8 +2,14 @@ import React from 'react'
 import {motion} from 'framer-motion'
 
 const Contact = () => {
-
-  let inputstyle="bg-stone-900 text-white rounded"
+    
+  let cards = [
+    {option : "A delivery order or return"}, 
+    {option: "Security and privacy"},
+    {option: "Payment, changes or gift cards"},
+    {option: "Memberships, subscriptions, or communication"},
+    {option: "Something else"},
+  ];
 
   return (
     <motion.div
@@ -11,30 +17,32 @@ const Contact = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-      className="flex justify-center flex-col align-center items-center mb-52"
+      className="mt-40 h-screen flex flex-col px-96"
     >
-      
-      <motion.div 
-        className="text-stone-400 mt-20 mb-10 text-3xl"
-      initial={{ opacity: 0, x:-300 }}
-      animate={{ opacity: 1, x:0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 1 }}
-      >
-        Still need help?
-      </motion.div>
-
-      <div className="">
-      <motion.div
-        initial={{ opacity: 0, x:300 }}
-        animate={{ opacity: 1, x:0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        className="bg-stone-200 h-96 w-96 rounded"
-      >
-
-      </motion.div>
+    
+      <div>
+        <div>
+          <p className="text-white text-bold text-4xl">
+            Welcome to Customer Support
+          </p>
+          <p className="text-white mt-5">
+            What would you like help with today? You can quickly take care of  most things here, or connect with us when needed
+          </p>
+        </div>
       </div>
+
+      <div className="flex flex-wrap mt-10">
+        {
+          cards.map((card)=>{
+          return(
+            <div className="w-2/5 h-24 bg-stone-800 my-5 mr-5 flex align-center justify-center items-center cursor-pointer hover:bg-stone-700 transition ease-in-out duration-50 delay-20">
+                <p className="text-bold text-xl text-white ">{card.option}</p>
+            </div>
+          )
+        })
+        }
+      </div>
+
       
     </motion.div>
   )
