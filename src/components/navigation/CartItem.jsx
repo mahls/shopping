@@ -5,24 +5,20 @@ import CloseIcon from '@mui/icons-material/Close';
 import {useContext} from 'react'
 
 const CartItem = () => {
-
   // take in props for item
   // import cart context and write functions add minus and clear
   
   let incrementItem=()=>{
-
   };
   
   let decrementItem=()=>{
-
   };
   
   let removeItem=()=>{
-
   };
  
   return (
-    <div className="h-28 text-white bg-stone-900 m-4 p-2 flex justify-between align-center items-center px-10 cursor-pointer">
+    <div className="h-28 text-white bg-black m-4 p-2 flex justify-between align-center items-center px-10 cursor-pointer">
       
       <div>
         image
@@ -33,7 +29,6 @@ const CartItem = () => {
       </div>
       
       <div className="flex">
-
 
         <div className="px-5 font-bold">
           <p>1</p>

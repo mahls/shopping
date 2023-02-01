@@ -25,7 +25,7 @@ const Contact = () => {
           <p className="text-white text-bold text-4xl">
             Welcome to Customer Support
           </p>
-          <p className="text-white mt-5">
+          <p className="text-white text-xl mt-5">
             What would you like help with today? You can quickly take care of  most things here, or connect with us when needed
           </p>
         </div>
@@ -42,7 +42,6 @@ const Contact = () => {
         })
         }
       </div>
-
       
     </motion.div>
   )

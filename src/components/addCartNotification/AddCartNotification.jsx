@@ -1,10 +1,7 @@
 import React from 'react'
 import {motion} from 'framer-motion'
 
-
-
 const AddCartNotification = ({notification}) => {
-
     
   let notificationFalse = "bg-green-600 h-9 rounded absolute top-0 flex text-stone-200 justify-center items-center font-bold rounded w-11/12 transition ease-in-out delay-300 duration-200"
   let notificationTrue = "bg-green-600 h-9 rounded sticky top-20 flex text-stone-200 justify-center items-center font-bold rounded w-11/12 transition ease-in-out delay-300 duration-200"

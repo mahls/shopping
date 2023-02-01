@@ -6,7 +6,7 @@ import Footer from '../components/footer/Footer.jsx'
 const Layout = () => {
   return (
 
-    <div className="bg-stone-900">
+    <div className="bg-black">
       
       <Navigation/>
       

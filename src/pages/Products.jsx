@@ -19,6 +19,7 @@ const Products = () => {
     }, 1500);
   }, [])
 
+
   return (
 
     <motion.div
@@ -26,24 +27,24 @@ const Products = () => {
       animate={{opacity:1}}
       exit={{opacity:0}}
       transition={{duration: 1}}
-      className="mb-20"
+      className="bg-black h=screen"
     >
       
-      {notification && <AddCartNotification notification={notification}/> }
-        
-      
+
     { loading ? 
-      <div className = "mt-10 h-52 mb-10 w-screen">
-      <Skeleton variant="rectangular" sx={{ bgcolor: 'grey.800' }}  width={10000} height={185} />
+      <div className = "w-screen mt-14">
+        <Skeleton variant="rectangular" sx={{ bgcolor: 'grey.800' }}  width={10000} height={240} />
       </div> 
         :  
-        <div className="mt-10 h-60 bg-blue-500 mb-5">
-          <img src={summerBanner} className=" h-60 w-screen cursor-pointer"/>
-        </div>
+      <div className="  bg-black h-60 mb-20 mt-14  ">
+        <img src={summerBanner} className=" h-80 w-screen cursor-pointer"/>
+      </div>
     }
-      <div className="h-screen overflow-y-scroll">
-        <div className="w-screen align-center justify-center min-h-full flex flex-wrap overflow-scroll">
-        {
+
+
+       
+        <div className="flex flex-wrap justify-center bg-black px-3 py-10 rounded">
+          {
           shopProducts.map((product)=>{
            return (
                   <ProductCard 
@@ -59,10 +60,8 @@ const Products = () => {
                   />
            )
           })
-        }
+          }
         </div>
-      </div>
-
 
     </motion.div>
 

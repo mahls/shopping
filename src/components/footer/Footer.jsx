@@ -1,16 +1,13 @@
 import React from 'react'
-
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import TwitterIcon from '@mui/icons-material/Twitter';
-
 import logo from '../../assets/logo.png'
-
 
 const Footer = () => {
   return (
-    <div className="bg-stone-800 flex justify-between align-center items-center h-52 text-white px-16 py-5 text-stone-500">
+    <div className="bg-stone-800 flex justify-between align-center items-center h-72 text-white px-16 py-5 text-stone-500 ">
 
       <div className="text-2xl text-stone-500">
         <p className="bold">LOGO</p>

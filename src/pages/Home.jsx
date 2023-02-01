@@ -13,6 +13,8 @@ const Home = () => {
   console.log(theme);
   console.log(cart);
 
+  //<img src={redbanner} className="w-screen h-52"/>
+
   return (
     <motion.div className="mt-10 w-max h-screen"
       initial={{ opacity: 0 }}
@@ -21,7 +23,6 @@ const Home = () => {
       transition={{ duration: 1 }}
     >
       
-      <img src={redbanner} className="w-screen h-52"/>
 
       <div className="h-96 w-screen">
       
