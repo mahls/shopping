@@ -36,7 +36,7 @@ const Navigation = () => {
   let unactiveHome = "text-ston-400"
 
   return (
-    <>
+    <div className="w-full overflow-hidden">
       
       <div className="bg-black h-16 text-xl flex justify-between items-center px-16 py-10 text-stone-200 border-b-2 border-stone-200">
         
@@ -78,7 +78,7 @@ const Navigation = () => {
         
       </div>
         
-      <div className={` z-50 bg-neutral-800 h-screen z-50 w-1/4 absolute right-0 flex flex-col transition ease-in-out delay-15 duration-30 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={` z-50 bg-neutral-900 overflow-x-hidden z-50 w-1/4 absolute right-0 top-22 h-full flex flex-col transition ease-in-out delay-15 duration-30 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}>
        
         <div className="flex text-white mt-5 px-5">
           <div className="flex-1">
@@ -124,15 +124,28 @@ const Navigation = () => {
           <p className="text-white">Shipping, taxes, and discounts added at checkout.</p>
         </div>
 
-        </div>
 
-        <div className={`${ navOpen ? 'bg-black z-10 absolute right-0 h-screen w-screen opacity-75 blur-3xl' 
+
+        
+      </div>
+
+        <div className={`${ navOpen ? 'bg-black z-10 absolute right-0 h-full w-screen opacity-75 blur-3xl' 
           : 'opacity-0' }`} onClick={()=>{setnavOpen(false)}}>
         </div>
 
-  </>
+  </div>
   )
 
 }
 
 export default Navigation;
+
+
+
+
+
+
+
+
+
+

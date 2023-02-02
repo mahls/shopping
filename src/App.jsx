@@ -25,7 +25,7 @@ import {ThemeProvider} from './context/ThemeContext'
 function App() {
 
   return (
-    <div className="">
+    <div className="overflow-x-hidden bg-black">
     <CartProvider>
     <ThemeProvider>
       <BrowserRouter>

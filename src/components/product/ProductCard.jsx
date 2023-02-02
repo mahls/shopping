@@ -87,8 +87,8 @@ const ProductCard = ({id, name, image, price, description, rating, notification,
              <p className="font-bold text-xl">{price}</p>
            </div>
            
-           <div onClick={notifyProduct} className="flex justify-center mb-5 mt-2">
-             <button className="bg-blue-600 py-1 text-xl font-bold w-full mt-2">Add to Cart <AddShoppingCartIcon/></button>
+           <div onClick={notifyProduct} className="flex justify-center mb-5 mt-2 hover">
+             <button className="bg-blue-600 py-1 text-xl font-bold w-full mt-2 hover:bg-blue-800 delay-100 transition-300 ease-in-out">Add to Cart <AddShoppingCartIcon/></button>
            </div>
         </div>
 
