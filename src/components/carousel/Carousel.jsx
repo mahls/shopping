@@ -13,7 +13,6 @@ import 'swiper/css/scrollbar';
 const Carousel = ({itemData}) => {
   
   const [showModal, setShowModal] = useState(false);
-  console.log(itemData);
 
   let imageStyle="h-2/4 w-2/4 cursor-pointer"
 
@@ -35,7 +34,6 @@ const Carousel = ({itemData}) => {
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
         className="mb-20 h-1/5"
       >
 

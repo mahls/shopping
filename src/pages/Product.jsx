@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState, useEffect} from'react'
+import {useState, useEffect, useContext} from'react'
 import {useParams} from 'react-router-dom'
 import {motion} from 'framer-motion'
 import Carousel from '../components/carousel/Carousel'
@@ -12,108 +12,69 @@ import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import { ToastContainer, toast } from 'react-toastify';
+import CartContext from '../context/CartContext.jsx'
 import 'react-toastify/dist/ReactToastify.css';
 
 const Product = () => {
 
-  // constants
   const location = useLocation();
-
-  const [productAmount, setproductAmount] = useState({
-    quantity: 2,
-    price: "21",
-  })
-
-  // variables 
-  let itemData = location.state.productData;
   let {id} = useParams();
+  let itemData = location.state.productData;
   let ratingNo = parseInt(itemData.rating);
-
-  let sizingStyle         = "border border-stone-300 px-7 py-5 ml-1 transition-700 delay-600 ease-in-out cursor-pointer w-24 flex justify-center hover:bg-stone-900"; 
-  let sizingStyleSelected = "border border-stone-300 bg-stone-900 px-7 py-5 ml-1 cursor-pointer w-24 flex justify-center";
-
+  
+  const cartContext = useContext(CartContext);
   const [sizes, setSizes] = useState({small: false, medium: false, large: false, extra: false, extraextra: false});
   const [selectedSize, setSelectedSize] = useState('');
   const [hasSelected] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('Something went wrong');
+  const [error, setError] = useState(false);
 
-  // effects
-  useEffect(() => {
-    window.scrollTo(0,0);
-  }, [])
+  let sizingStyle = "border border-stone-300 px-7 py-5 ml-1 transition-700 delay-600 ease-in-out cursor-pointer w-24 flex justify-center hover:bg-stone-900"; 
+  let sizingStyleSelected = "border border-stone-300 bg-stone-900 px-7 py-5 ml-1 cursor-pointer w-24 flex justify-center";
 
-  //  functions
+  useEffect(() => {window.scrollTo(0,0);},[])
+
   const notify = () => toast(`${name} added to cart`, {
     position: "top-left",
     autoClose: 2000,
     hideProgressBar: true,
     theme: "dark",
   });
-
+  
   let selectSize=(size)=>{
       const allSizesFalse = Object.fromEntries(Object.entries(sizes).map(([size]) => [size, false]));
       setSizes(allSizesFalse);
       setSizes( prev => ({...prev,  [size]: !prev[size]}) );
       setSelectedSize(size);
+      if(error) setError(!error);
   };
 
   let addToCart=()=>{
-    if(selectSize == ''){
-      alert('select one');
+    if(selectedSize == ''){
+      setErrorMessage('Please select a size');
+      setError(true);
+      return
     }
+      
+      console.log(selectedSize);
+    
+      cartContext.setCart(
+        [...cartContext.cart, {
+                                name:`${itemData.name}`, 
+                                price:`${itemData.price}`, 
+                                image:`${itemData.image}`,
+                                size:`${selectedSize}`,
+                                id: Math.random(),
+                              }
+        ]);
+      console.log(cartContext.cart);
   };
-
-  let deselectSize=()=>{
-    setSizes({small: false, medium: false, large: false, extra: false, extraextra: false});
-  };
-
-  //<div>
-      //{Object.keys(itemData).map((keyName)=>{
-        //return (<div>{itemData[keyName]}</div>)
-      //})}
-    //</div>
-
-  //fix reviews and share button
   
-  let ShowOneStar=()=>{
-    return(
-      <>
-        <StarIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/>
-      </>
-    );
-  }
-
-  let ShowTwoStar=()=>{
-    return(
-      <>
-        <StarIcon/> <StarIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/>
-      </>
-    );
-  }
-
-
-  let ShowThreeStar=()=>{
-    return(
-      <>
-        <StarIcon/> <StarIcon/> <StarIcon/> <StarBorderIcon/> <StarBorderIcon/>
-      </>
-    );
-  }
-
-   let ShowFourStar=()=>{
-    return(
-      <>
-        <StarIcon/> <StarIcon/> <StarIcon/> <StarIcon/> <StarBorderIcon/>
-      </>
-    );
-  }
-
-   let ShowFiveStar=()=>{
-    return(
-      <>
-        <StarIcon/> <StarIcon/> <StarIcon/> <StarIcon/> <StarIcon/>
-      </>
-    );
-  }
+  let ShowOneStar=()=>{return(<><StarIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/></>);}
+  let ShowTwoStar=()=>{return(<><StarIcon/> <StarIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/></>);}
+  let ShowThreeStar=()=>{return(<><StarIcon/> <StarIcon/> <StarIcon/> <StarBorderIcon/> <StarBorderIcon/></>);}
+  let ShowFourStar=()=>{return(<><StarIcon/> <StarIcon/> <StarIcon/> <StarIcon/> <StarBorderIcon/></>);}
+  let ShowFiveStar=()=>{return(<><StarIcon/> <StarIcon/> <StarIcon/> <StarIcon/> <StarIcon/></>);}
  
   return (
     
@@ -186,7 +147,6 @@ const Product = () => {
             <div className={sizes.extraextra ? sizingStyleSelected : sizingStyle} onClick={()=>{selectSize('extraextra')}}>
               XXL
             </div>
-
           </div>
 
           <div
@@ -195,6 +155,8 @@ const Product = () => {
           >
               Add to cart
           </div>
+          
+          {error && <div className="text-red-600 mt-5 flex justify-center text-2xl transition-300 delay-50 ease-in-out">{errorMessage}</div> }
 
         </div>    
       

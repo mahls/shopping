@@ -24,7 +24,6 @@ const Products = () => {
     }, 1500);
   }, [])
 
-
   return (
 
     <motion.div
@@ -34,7 +33,6 @@ const Products = () => {
       transition={{duration: 1}}
       className="bg-black relative"
     >
-      
 
     { loading ? 
       <div className = "w-screen mt-14">
@@ -46,8 +44,6 @@ const Products = () => {
       </div>
     }
 
-
-       
         <div className="flex flex-wrap justify-center bg-black px-3 py-10">
           {
           shopProducts.map((product)=>{
