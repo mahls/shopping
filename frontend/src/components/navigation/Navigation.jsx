@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
@@ -10,30 +10,79 @@ import {NavLink, useNavigate} from 'react-router-dom'
 import {useContext} from 'react'
 import CartItem from './CartItem.jsx'
 import CloseIcon from '@mui/icons-material/Close';
+import CartContext from '../../context/CartContext.jsx'
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Search from '../searchFilter/Search.jsx'
+
+
+// move toastify notifications from products to product
+// make favourites context
+// have banner as swiper
+// implement dark light mode
+
 
 const Navigation = () => {
-  
+ 
+  const cartContext = useContext(CartContext);
   const navigate = useNavigate();
   const [navOpen, setnavOpen] = useState(false);
+  const [supportMenu, setSupportMenu] = useState(false);
+  const [isCartEmpty, setIsCartEmpty] = useState(true);
+  const [subTotal, setSubTotal] = useState('');
+
+  let cartArray = cartContext.cart;
+  let setCart = cartContext.setCart;
+
+  let activeClass = "text-stone-200 pr-4 pl-4"
+  let unactiveClass = "text-stone-400 pr-4 pl-4"
+  let activeHome = "text-stone-200"
+  let unactiveHome = "text-ston-400"
+
+
+  useEffect(() => {
+    calculateSubTotal();
+  }, [navOpen])
 
   let toggleNav = () => {
+    
+    //let total = calculateSubTotal();
     setnavOpen(!navOpen);
     console.log(navOpen);
+    console.log(cartContext.cart);
+    console.log(subTotal);
   }
 
-  let toggleTheme = () => {
-    console.log("theme");
-  }
+  let toggleTheme = () => {console.log("theme");}
 
   let navigateToCheckout = () => {
       setnavOpen(!navOpen);
       navigate("/checkout");
   }
 
-  let activeClass = "text-stone-200 pr-2 pl-2"
-  let unactiveClass = "text-stone-400 pr-2 pl-2"
-  let activeHome = "text-stone-200"
-  let unactiveHome = "text-ston-400"
+  let calculateSubTotal = () => {
+
+    let priceString = '';
+    let priceInt = 0;
+    let totalPriceString = '';
+    
+    cartArray.map((item)=>{ 
+      priceString = item.price;
+      priceString = priceString.slice(1);
+      let nextPriceInt = parseInt(priceString);
+      priceInt += nextPriceInt;
+      console.log(priceInt);
+    });
+
+    totalPriceString = "$" + priceInt.toString();
+    setSubTotal(totalPriceString);
+  }
+
+  let openSupport={
+  };
+
+
 
   return (
     <>
@@ -43,6 +92,8 @@ const Navigation = () => {
         <div className="align-middle justify-items-center">
           <NavLink onClick={()=>setnavOpen(false)} to="/"><p className="font-bold text-2xl text-white">LOGO</p></NavLink>
         </div>
+
+        <Search/>
         
         <div className="flex justify-between">
 
@@ -59,10 +110,10 @@ const Navigation = () => {
             CHECKOUT
           </NavLink>
           
-          <NavLink onClick={()=>setnavOpen(false)} to="/contact"
-            className={({ isActive }) => isActive ? activeClass : unactiveClass} 
+          <NavLink onClick={()=>setnavOpen(false)} to="/contact" on
+            className={({ isActive }) => isActive ? activeClass : unactiveClass} onMouseEnter={openSupport} 
           >
-            SUPPORT
+            SUPPORT <KeyboardArrowDownIcon/>
           </NavLink>  
           
           <NavLink onClick={()=>setnavOpen(false)} to="/products"
@@ -72,7 +123,8 @@ const Navigation = () => {
           </NavLink>
           
           <NightlightRoundIcon className="cursor-pointer ml-4" onClick={toggleTheme}/>
-          <ShoppingCartIcon className="cursor-pointer ml-4"  onClick={toggleNav}/>
+          <FavoriteBorderIcon className="cursor-pointer ml-4" />
+          <LocalMallIcon className="cursor-pointer ml-4"  onClick={toggleNav}/>
 
         </div>
         
@@ -94,8 +146,25 @@ const Navigation = () => {
         </div>
 
         <div className="overflow-y-scroll">
-          <CartItem/>
-          <CartItem/>
+          { cartArray.length == 0 ? 
+            <div className="px-2 flex justify-center">
+              <p className="text-2xl text-stone-400 mx-5 my-5">Nothing to display</p>
+            </div>
+            :
+            cartArray.map((item)=>{
+            return(
+              <CartItem 
+                id={item.id}
+                image={item.image}
+                name={item.name}
+                price={item.price}
+                cart={cartArray}
+                setCart={setCart}
+                size={item.size}
+              />
+            );
+            })
+          } 
         </div>
         {/* loop through cart items here after importing cart context */} 
          
@@ -110,7 +179,7 @@ const Navigation = () => {
             <p>Subtotal:</p>
           </div>
           <div>
-            <p>$244</p>
+            <p>{subTotal}</p>
           </div>
         </div>    
         
@@ -128,6 +197,11 @@ const Navigation = () => {
 
         <div className={`${ navOpen ? 'bg-black z-10 absolute right-0 h-screen w-screen opacity-75 blur-3xl' 
           : 'opacity-0' }`} onClick={()=>{setnavOpen(false)}}>
+        </div>
+
+        <div className={`${supportMenu ? 'visible h-52' : 'hidden'}`}>
+            <p>Resources</p>
+            <p>FAQ</p>
         </div>
 
   </>

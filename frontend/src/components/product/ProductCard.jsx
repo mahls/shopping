@@ -5,6 +5,7 @@ import {useState, useEffect} from 'react'
 import Skeleton from '@mui/material/Skeleton';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
   
 const ProductCard = ({id, name, image, price, description, rating, notification, setnotificationm}) => {
  
@@ -67,6 +68,10 @@ const ProductCard = ({id, name, image, price, description, rating, notification,
         className="bg-stone-900 shadow-xl w-80 text-white mx-5 my-5"
       >
         <ToastContainer/>
+        
+        <div className="relative bottom-0 right-0 text-blue-900 w-10">
+          <FavoriteBorderIcon/>
+        </div>  
 
         <div className="">
           <Link to={`/products/product/${id}`} state={{productData}}>
@@ -88,7 +93,16 @@ const ProductCard = ({id, name, image, price, description, rating, notification,
            </div>
            
            <div onClick={notifyProduct} className="flex justify-center mb-5 mt-2 hover">
-             <button className="bg-blue-600 py-1 text-xl font-bold w-full mt-2 hover:bg-blue-800 delay-100 transition-300 ease-in-out">Add to Cart <AddShoppingCartIcon/></button>
+             <button className="bg-blue-600 py-1 text-xl font-bold w-full mt-2 hover:bg-blue-800 delay-100 transition-300 ease-in-out">
+
+
+          <Link to={`/products/product/${id}`} state={{productData}}>
+        More Info    
+      </Link>
+
+
+
+      </button>
            </div>
         </div>
 

@@ -4,9 +4,7 @@ import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox
 import CloseIcon from '@mui/icons-material/Close';
 import {useContext} from 'react'
 
-const CartItem = () => {
-  // take in props for item
-  // import cart context and write functions add minus and clear
+const CartItem = ({id, image, name, price, size, cart, setCart}) => {
   
   let incrementItem=()=>{
   };
@@ -21,17 +19,19 @@ const CartItem = () => {
     <div className="h-28 text-white bg-black m-4 p-2 flex justify-between align-center items-center px-10 cursor-pointer">
       
       <div>
-        image
+        <img src={image} className="h-20 w-24"/>
       </div>
       
       <div>
-        $24
+        <p className="text-xl">{price}</p>
+
+        <p className="text-xl text-white">{size}</p>
       </div>
       
       <div className="flex">
 
         <div className="px-5 font-bold">
-          <p>1</p>
+          <p className="text-xl">1</p>
         </div>
 
         <div onClick={incrementItem}>     
@@ -43,7 +43,7 @@ const CartItem = () => {
           <button><IndeterminateCheckBoxIcon/></button>
         </div>
         
-        <div>
+        <div className="">
           <CloseIcon onClick={removeItem} className="cursor-pointer"/>
         </div>
 

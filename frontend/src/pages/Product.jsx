@@ -14,6 +14,8 @@ import IosShareIcon from '@mui/icons-material/IosShare';
 import { ToastContainer, toast } from 'react-toastify';
 import CartContext from '../context/CartContext.jsx'
 import 'react-toastify/dist/ReactToastify.css';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Product = () => {
 
@@ -153,7 +155,7 @@ const Product = () => {
             onClick={addToCart}
             className="flex justify-center mt-10 bg-blue-600 h-12 font-bold align-center items-center text-2xl cursor-pointer hover:bg-blue-900 transition-300 delay-100"
           >
-              Add to cart
+              Add to Bag
           </div>
           
           {error && <div className="text-red-600 mt-5 flex justify-center text-2xl transition-300 delay-50 ease-in-out">{errorMessage}</div> }

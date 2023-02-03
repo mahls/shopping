@@ -8,15 +8,17 @@ import {motion} from 'framer-motion'
 import shopProducts from '../data.js'
 import Skeleton from '@mui/material/Skeleton'
 import CartContext from '../context/CartContext.jsx'
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const Products = () => {
   
   const [notification, setnotification] = useState(false);
   const [loading, setloading] = useState(true);
 
-  const {cart} = useContext(CartContext);
+  const cartContext = useContext(CartContext);
+
   
-  console.log(cart);
 
   useEffect(() => {
     setTimeout(() => {
@@ -63,7 +65,10 @@ const Products = () => {
           })
           }
         </div>
-
+        
+        <div className="flex justify-center my-10">
+        <Pagination count={10} variant="outlined" shape="rounded" color="primary" />
+        </div>
     </motion.div>
 
   )
