@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
@@ -15,22 +15,28 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Search from '../searchFilter/Search.jsx'
+import { useDraggable } from "react-use-draggable-scroll";
 
 
 // move toastify notifications from products to product
 // make favourites context
 // have banner as swiper
-// implement dark light mode
+// implement theme select
+// refactor navigation
 
 
 const Navigation = () => {
  
   const cartContext = useContext(CartContext);
   const navigate = useNavigate();
+ 
   const [navOpen, setnavOpen] = useState(false);
   const [supportMenu, setSupportMenu] = useState(false);
   const [isCartEmpty, setIsCartEmpty] = useState(true);
   const [subTotal, setSubTotal] = useState('');
+  
+  const cartDivRef = useRef();
+  const { events } = useDraggable(cartDivRef);
 
   let cartArray = cartContext.cart;
   let setCart = cartContext.setCart;
@@ -39,7 +45,6 @@ const Navigation = () => {
   let unactiveClass = "text-stone-400 pr-4 pl-4"
   let activeHome = "text-stone-200"
   let unactiveHome = "text-ston-400"
-
 
   useEffect(() => {
     calculateSubTotal();
@@ -86,10 +91,12 @@ const Navigation = () => {
 
   return (
     <>
+
+      {/*desktop menu*/}
       
-      <div className="bg-black h-16 text-xl flex justify-between items-center px-16 py-10 text-stone-200 border-b-2 border-stone-200">
+      <div className="bg-black h-16 text-xl flex justify-between items-center px-16 py-10 text-stone-200 border-b-2 border-stone-500">
         
-        <div className="align-middle justify-items-center">
+        <div className="align-middle justify-items-center mr-4">
           <NavLink onClick={()=>setnavOpen(false)} to="/"><p className="font-bold text-2xl text-white">LOGO</p></NavLink>
         </div>
 
@@ -129,8 +136,16 @@ const Navigation = () => {
         </div>
         
       </div>
+
+
+      {/*cart sidemenu*/}  
+
+      <div className={` z-50 overflow-y-scroll bg-neutral-800 h-full z-50 w-2/5 absolute right-0 flex flex-col transition ease-in-out delay-15 duration-30 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}
         
-      <div className={` z-50 bg-neutral-800 h-screen z-50 w-1/4 absolute right-0 flex flex-col transition ease-in-out delay-15 duration-30 ${navOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        {...events}
+        ref={cartDivRef}
+      
+      >
        
         <div className="flex text-white mt-5 px-5">
           <div className="flex-1">
@@ -145,7 +160,7 @@ const Navigation = () => {
           <p className="text-xl text-white font-bold">FREE SHIPPING OVER $75</p>
         </div>
 
-        <div className="overflow-y-scroll">
+        <div className="overflow-y-scroll h-2/4">
           { cartArray.length == 0 ? 
             <div className="px-2 flex justify-center">
               <p className="text-2xl text-stone-400 mx-5 my-5">Nothing to display</p>
@@ -166,7 +181,6 @@ const Navigation = () => {
             })
           } 
         </div>
-        {/* loop through cart items here after importing cart context */} 
          
         <div className="flex justify-center underline font-bold text-white mt-5 cursor-pointer">
           <div>
@@ -189,17 +203,21 @@ const Navigation = () => {
           </NavLink> 
         </div>
         
-        <div className="flex justify-center items-center mt-5">
+        <div className="flex justify-center items-center mt-5 mb-20">
           <p className="text-white">Shipping, taxes, and discounts added at checkout.</p>
         </div>
+        
+      </div>
+      
+      {/*backdrop*/}
 
-        </div>
-
-        <div className={`${ navOpen ? 'bg-black z-10 absolute right-0 h-screen w-screen opacity-75 blur-3xl' 
-          : 'opacity-0' }`} onClick={()=>{setnavOpen(false)}}>
-        </div>
-
-        <div className={`${supportMenu ? 'visible h-52' : 'hidden'}`}>
+      <div className={`${ navOpen ? 'bg-black z-10 absolute right-0 h-full w-full opacity-75 blur-3xl' 
+        : 'opacity-0' }`} onClick={()=>{setnavOpen(false)}}>
+      </div>
+      
+      {/*support menu*/}
+    
+      <div className={`${supportMenu ? 'visible h-52' : 'hidden'}`}>
             <p>Resources</p>
             <p>FAQ</p>
         </div>

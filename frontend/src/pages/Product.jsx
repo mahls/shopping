@@ -17,6 +17,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
+import Button from '@mui/material/Button';
+
 const Product = () => {
 
   const location = useLocation();
@@ -31,14 +33,14 @@ const Product = () => {
   const [errorMessage, setErrorMessage] = useState('Something went wrong');
   const [error, setError] = useState(false);
 
-  let sizingStyle = "border border-stone-300 px-7 py-5 ml-1 transition-700 delay-600 ease-in-out cursor-pointer w-24 flex justify-center hover:bg-stone-900"; 
-  let sizingStyleSelected = "border border-stone-300 bg-stone-900 px-7 py-5 ml-1 cursor-pointer w-24 flex justify-center";
+  let sizingStyle = "border border-stone-300 text-2xl px-7 py-5 ml-1 transition-700 delay-600 ease-in-out cursor-pointer w-24 flex justify-center hover:bg-stone-900"; 
+  let sizingStyleSelected = "border text-2xl border-stone-300 bg-stone-700 px-7 py-5 ml-1 cursor-pointer w-24 flex justify-center";
 
   useEffect(() => {window.scrollTo(0,0);},[])
 
-  const notify = () => toast(`${name} added to cart`, {
+  const notifyAdd = () => toast(`${selectedSize} ${itemData.name} added to cart`, {
     position: "top-left",
-    autoClose: 2000,
+    autoClose: 500,
     hideProgressBar: true,
     theme: "dark",
   });
@@ -57,7 +59,6 @@ const Product = () => {
       setError(true);
       return
     }
-      
       console.log(selectedSize);
     
       cartContext.setCart(
@@ -70,6 +71,9 @@ const Product = () => {
                               }
         ]);
       console.log(cartContext.cart);
+      
+      notifyAdd();
+
   };
   
   let ShowOneStar=()=>{return(<><StarIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/></>);}
@@ -85,7 +89,7 @@ const Product = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}  
-      className="h-screen text-white bg-black"
+      className="h-screen text-white bg-[#0f0f0f]"
     >
       
       <div className="flex justify-between px-64 pt-32">
@@ -151,14 +155,13 @@ const Product = () => {
             </div>
           </div>
 
-          <div
-            onClick={addToCart}
-            className="flex justify-center mt-10 bg-blue-600 h-12 font-bold align-center items-center text-2xl cursor-pointer hover:bg-blue-900 transition-300 delay-100"
-          >
-              Add to Bag
+          <div className="mt-10">
+            <Button onClick={addToCart} style={{ fontSize: '15px', fontWeight: 700 }} sx={{width: 400,}} variant="contained">Add to Bag</Button>
           </div>
+   <ToastContainer />
           
-          {error && <div className="text-red-600 mt-5 flex justify-center text-2xl transition-300 delay-50 ease-in-out">{errorMessage}</div> }
+          {error && <motion.div initial={{x:-50}} animate={{x:50, x:0}} transition={{delay:0.1, type: 'spring'}} 
+            className="text-red-600 mt-5 flex justify-center text-2xl transition-300 delay-50 ease-in-out">{errorMessage}</motion.div> }
 
         </div>    
       

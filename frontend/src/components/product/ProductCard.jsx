@@ -6,6 +6,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import {motion} from 'framer-motion'
   
 const ProductCard = ({id, name, image, price, description, rating, notification, setnotificationm}) => {
  
@@ -49,6 +50,9 @@ const ProductCard = ({id, name, image, price, description, rating, notification,
     theme: "dark",
   })
 
+  let addToFavourites=()=>{
+    console.log('added');
+  };
 
 
   return (
@@ -64,14 +68,18 @@ const ProductCard = ({id, name, image, price, description, rating, notification,
 
       :
 
-      <div 
-        className="bg-stone-900 shadow-xl w-80 text-white mx-5 my-5"
+      <motion.div 
+        whileHover={{scale: 1.02}}
+        className=" relative bg-stone-900 shadow-xl w-80 text-white mx-5 my-5 border border-stone-700"
       >
         <ToastContainer/>
         
-        <div className="relative bottom-0 right-0 text-blue-900 w-10">
-          <FavoriteBorderIcon/>
-        </div>  
+        <motion.div
+          whileHover={{scale:2, x:-10, y:5}}
+          className="absolute top-3 right-3"
+        >
+          <FavoriteBorderIcon size="large" onClick={addToFavourites} className="cursor-pointer"/>
+        </motion.div>  
 
         <div className="">
           <Link to={`/products/product/${id}`} state={{productData}}>
@@ -92,21 +100,18 @@ const ProductCard = ({id, name, image, price, description, rating, notification,
              <p className="font-bold text-xl">{price}</p>
            </div>
            
-           <div onClick={notifyProduct} className="flex justify-center mb-5 mt-2 hover">
+           <motion.div 
+            whileHover={{scale: 1.1, textShadow: "0px 0px 8px rgb(255,255,255), boxShadow: 0px 0px 8px rgb(255,255,255)"}} 
+            onClick={notifyProduct} className="flex justify-center mb-5 mt-2 hover"
+            >
              <button className="bg-blue-600 py-1 text-xl font-bold w-full mt-2 hover:bg-blue-800 delay-100 transition-300 ease-in-out">
-
-
-          <Link to={`/products/product/${id}`} state={{productData}}>
-        More Info    
-      </Link>
-
-
-
-      </button>
-           </div>
+                <Link to={`/products/product/${id}`} state={{productData}}>More Info</Link>
+              </button>
+           </motion.div>
+          
         </div>
 
-    </div>
+    </motion.div>
     }
     </>
   )

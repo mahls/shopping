@@ -7,7 +7,7 @@ import Footer from '../components/footer/Footer.jsx'
 const Layout = () => {
   return (
 
-    <div className="bg-black h-full relative">
+    <div className="bg-[#080808] h-full relative">
         <Navigation/>
         <Outlet/>
         <Footer/>

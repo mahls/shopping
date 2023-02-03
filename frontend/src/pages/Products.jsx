@@ -4,7 +4,7 @@ import ProductCard from '../components/product/ProductCard'
 import AddCartNotification from '../components/addCartNotification/AddCartNotification.jsx'
 import banner from '../assets/banner.jpg'
 import summerBanner from '../assets/summer_banner.jpg'
-import {motion} from 'framer-motion'
+import { motion, useScroll } from "framer-motion"
 import shopProducts from '../data.js'
 import Skeleton from '@mui/material/Skeleton'
 import CartContext from '../context/CartContext.jsx'
@@ -15,11 +15,10 @@ const Products = () => {
   
   const [notification, setnotification] = useState(false);
   const [loading, setloading] = useState(true);
-
   const cartContext = useContext(CartContext);
-
+  const { scrollYProgress } = useScroll();
+  //style={{scaleX: scrollYProgress}}
   
-
   useEffect(() => {
     setTimeout(() => {
       setloading(false);
@@ -33,7 +32,7 @@ const Products = () => {
       animate={{opacity:1}}
       exit={{opacity:0}}
       transition={{duration: 1}}
-      className="bg-black relative"
+      className=" relative"
     >
 
     { loading ? 
@@ -46,7 +45,7 @@ const Products = () => {
       </div>
     }
 
-        <div className="flex flex-wrap justify-center bg-black px-3 py-10">
+        <motion.div  className="flex flex-wrap justify-center bg-[#0f0f0f] px-3 py-10 h-full ">
           {
           shopProducts.map((product)=>{
            return (
@@ -64,10 +63,10 @@ const Products = () => {
            )
           })
           }
-        </div>
+        </motion.div>
         
-        <div className="flex justify-center my-10">
-        <Pagination count={10} variant="outlined" shape="rounded" color="primary" />
+        <div className="flex justify-center my-10 text-white">
+        <Pagination count={10} variant="outlined" shape="rounded" color="primary"  />
         </div>
     </motion.div>
 
