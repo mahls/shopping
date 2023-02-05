@@ -16,34 +16,30 @@ import CartContext from '../context/CartContext.jsx'
 import 'react-toastify/dist/ReactToastify.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
 import Button from '@mui/material/Button';
 
 const Product = () => {
 
+  useEffect(() => {window.scrollTo(0,0);},[])
   const location = useLocation();
-  let {id} = useParams();
-  let itemData = location.state.productData;
-  let ratingNo = parseInt(itemData.rating);
-  
   const cartContext = useContext(CartContext);
   const [sizes, setSizes] = useState({small: false, medium: false, large: false, extra: false, extraextra: false});
   const [selectedSize, setSelectedSize] = useState('');
   const [hasSelected] = useState(false);
   const [errorMessage, setErrorMessage] = useState('Something went wrong');
   const [error, setError] = useState(false);
-
-  let sizingStyle = "border border-stone-300 text-2xl px-7 py-5 ml-1 transition-700 delay-600 ease-in-out cursor-pointer w-24 flex justify-center hover:bg-stone-900"; 
-  let sizingStyleSelected = "border text-2xl border-stone-300 bg-stone-700 px-7 py-5 ml-1 cursor-pointer w-24 flex justify-center";
-
-  useEffect(() => {window.scrollTo(0,0);},[])
-
-  const notifyAdd = () => toast(`${selectedSize} ${itemData.name} added to cart`, {
+  const notifyAdd = () => toast(`${selectedSize} ${itemData.name} added to bag`, {
     position: "top-left",
     autoClose: 500,
     hideProgressBar: true,
     theme: "dark",
   });
+
+  let {id} = useParams();
+  let itemData = location.state.productData;
+  let ratingNo = parseInt(itemData.rating);
+  let sizingStyle = "border border-stone-300 text-2xl px-7 py-5 ml-1 transition-700 delay-600 ease-in-out cursor-pointer w-24 flex justify-center hover:bg-stone-900"; 
+  let sizingStyleSelected = "border text-2xl border-stone-300 bg-stone-700 px-7 py-5 ml-1 cursor-pointer w-24 flex justify-center";
   
   let selectSize=(size)=>{
       const allSizesFalse = Object.fromEntries(Object.entries(sizes).map(([size]) => [size, false]));
@@ -59,21 +55,21 @@ const Product = () => {
       setError(true);
       return
     }
-      console.log(selectedSize);
     
-      cartContext.setCart(
-        [...cartContext.cart, {
-                                name:`${itemData.name}`, 
-                                price:`${itemData.price}`, 
-                                image:`${itemData.image}`,
-                                size:`${selectedSize}`,
-                                id: Math.random(),
-                              }
-        ]);
-      console.log(cartContext.cart);
-      
-      notifyAdd();
-
+    //check if product name is the same and check if size is the same then increment price
+    //itemData holds all data for this product, remember this is the product page passed from product(s)
+    
+    cartContext.setCart(
+      [...cartContext.cart, {
+        name:`${itemData.name}`, 
+        price:`${itemData.price}`, 
+        image:`${itemData.image}`,
+        size:`${selectedSize}`,
+        id: Math.random(),
+        }
+      ]);
+    console.log(cartContext.cart);
+    notifyAdd();
   };
   
   let ShowOneStar=()=>{return(<><StarIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/> <StarBorderIcon/></>);}
@@ -83,7 +79,6 @@ const Product = () => {
   let ShowFiveStar=()=>{return(<><StarIcon/> <StarIcon/> <StarIcon/> <StarIcon/> <StarIcon/></>);}
  
   return (
-    
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -91,41 +86,30 @@ const Product = () => {
       transition={{ duration: 1 }}  
       className="h-screen text-white bg-[#0f0f0f]"
     >
-      
       <div className="flex justify-between px-64 pt-32">
-       
         <Carousel itemData={itemData}/>  
-        
         <div className="ml-10">
-          
           <div>
             <p className="font-bold text-6xl">{itemData.name}</p>
           </div>
-          
           <div className="mt-5">
             <p className="text-3xl text-stone-300">{itemData.description}</p>
           </div>
-          
           <div className="mt-10">
             <p className="text-3xl">{itemData.price} AUD</p>
           </div>
-          
           <div className="flex justify-between mt-10">
-            
             {ratingNo == 1 ? <ShowOneStar/> : <></>}
             {ratingNo == 2 ? <ShowTwoStar/> : <></>}
             {ratingNo == 3 ? <ShowThreeStar/> : <></>}
             {ratingNo == 4 ? <ShowFourStar/> : <></>}
             {ratingNo == 5 ? <ShowFiveStar/> : <></>}
-            
             <div className="">
               <p className="font-bold cursor-pointer underline ml-2 text-lg">Write a review</p>
             </div>
-            
             <div className="ml-32 cursor-pointer pb-2">
               <IosShareIcon fontSize="large"/> 
             </div>
-            
           </div>
 
           <div className="flex justify-between mt-10">
@@ -158,20 +142,12 @@ const Product = () => {
           <div className="mt-10">
             <Button onClick={addToCart} style={{ fontSize: '15px', fontWeight: 700 }} sx={{width: 400,}} variant="contained">Add to Bag</Button>
           </div>
-   <ToastContainer />
-          
+          <ToastContainer />
           {error && <motion.div initial={{x:-50}} animate={{x:50, x:0}} transition={{delay:0.1, type: 'spring'}} 
             className="text-red-600 mt-5 flex justify-center text-2xl transition-300 delay-50 ease-in-out">{errorMessage}</motion.div> }
-
         </div>    
-      
       </div>
-
     </motion.div>
   )
 }
-
 export default Product
-
-
-

@@ -48,7 +48,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap mt-10">
+      <div className="flex flex-wrap mt-10 mb-50">
         {
           cards.map((card)=>{
           return(

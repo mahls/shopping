@@ -2,16 +2,22 @@ import React from 'react'
 import {Outlet} from 'react-router-dom'
 import Navigation from '../components/navigation/Navigation.jsx'
 import Footer from '../components/footer/Footer.jsx'
-
+import {motion} from 'framer-motion'
 
 const Layout = () => {
   return (
 
-    <div className="bg-[#080808] h-full relative">
+    <motion.div 
+      className="bg-[#080808] h-full relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }} 
+    >
         <Navigation/>
         <Outlet/>
         <Footer/>
-    </div>
+    </motion.div>
 
   )
 }

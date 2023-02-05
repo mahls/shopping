@@ -3,10 +3,6 @@ import { useState } from 'react'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {AnimatePresence} from 'framer-motion'
 
-// data
-import shopProducts from './data.js'
-
-// pages
 import Layout from './pages/Layout.jsx'
 import Home from './pages/Home.jsx'
 import NoPage from './pages/NoPage.jsx'
@@ -15,17 +11,16 @@ import Products from './pages/Products.jsx'
 import Checkout from './pages/Checkout.jsx'
 import Contact from './pages/Contact.jsx'
 
-// components
-import Navigation from './components/navigation/Navigation'
-
-// context 
 import {CartProvider} from './context/CartContext'
 import {ThemeProvider} from './context/ThemeContext'
+import {SearchFilterProvider} from './context/SearchFilterContext.jsx'
+import {FavsContextProvider} from './context/FavouritesContext.jsx'
 
 function App() {
-
   return (
     <div className="overflow-x-hidden bg-black">
+    <FavsContextProvider>
+    <SearchFilterProvider>
     <CartProvider>
     <ThemeProvider>
       <BrowserRouter>
@@ -44,9 +39,9 @@ function App() {
       </BrowserRouter>
     </ThemeProvider>
     </CartProvider>
+    </SearchFilterProvider>
+    </FavsContextProvider>
     </div>
   )
-
 }
-
 export default App

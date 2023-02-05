@@ -3,7 +3,7 @@ import {createContext, useState} from 'react';
 
 const FavsContext = createContext();
 
-export function CartProvider({children}){
+export function FavsContextProvider({children}){
   const [favs, setFavs] = useState([]);
   return (
     <FavsContext.Provider value={ {favs, setFavs}  }>
@@ -12,4 +12,4 @@ export function CartProvider({children}){
   )
 }
 
-export default CartContext;
+export default FavsContext;
