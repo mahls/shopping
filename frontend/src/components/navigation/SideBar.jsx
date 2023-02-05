@@ -4,10 +4,11 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import LockIcon from '@mui/icons-material/Lock';
 import {NavLink, useNavigate} from 'react-router-dom'
 import CartItem from './CartItem.jsx'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 const SideBar = ({navOpen, calculateSubTotal, toggleNav, cartArray, subTotal, setCart}) => {
 
+  useEffect(() => {calculateSubTotal();},[toggleNav])
   const [quantity, setQuantity] = useState(1);
 
   let navigateToCheckout = () => {

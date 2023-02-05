@@ -9,6 +9,7 @@ import SideBar from './SideBar.jsx'
 
 const Navigation = () => {
 
+  useEffect(() => {calculateSubTotal();},[toggleNav])
   const cartContext = useContext(CartContext);
   const [navOpen, setnavOpen] = useState(false);
   const [supportMenu, setSupportMenu] = useState(false);
@@ -38,10 +39,10 @@ const Navigation = () => {
     <>
       <NavDesktop toggleNav={toggleNav} navOpen={navOpen} setnavOpen={setnavOpen}/>
       <SideBar toggleNav={toggleNav} calculateSubTotal={calculateSubTotal} navOpen={navOpen} cartArray={cartArray} subTotal={subTotal}
-      setCart={setCart} setSubTotal={setSubTotal}/>
+      setCart={setCart }/>
       
       <div className={`${ navOpen ? 'bg-black z-10 absolute right-0 h-full w-full opacity-75 blur-3xl' 
-        : 'opacity-0' }`} onClick={()=>{setnavOpen(false); calculateSubTotal()}}>
+        : 'opacity-0' }`} onClick={()=>{setnavOpen(false)}}>
       </div>
       
       <div className={`${supportMenu ? 'visible h-52' : 'hidden'}`}>
