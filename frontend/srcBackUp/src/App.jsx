@@ -11,9 +11,7 @@ import Products from './pages/shop/Products.jsx'
 import Checkout from './pages/shop/Checkout.jsx'
 import Contact from './pages/shop/Contact.jsx'
 
-import AdminLayout from './pages/admin/AdminLayout.jsx'
 import DashboardLogin from './pages/admin/DashboardLogin.jsx'
-import Dashboard from './pages/admin/protected/Dashboard.jsx' 
 
 import {CartProvider} from './context/CartContext'
 import {ThemeProvider} from './context/ThemeContext'
@@ -30,7 +28,6 @@ function App() {
       <BrowserRouter>
           <AnimatePresence exitBeforeEnter>
           <Routes>
-
             <Route path="/" element={<Layout/>}> 
                 <Route index element={<Home/>}/>
                 <Route path="/products" element={<Products/>}/>
@@ -39,12 +36,7 @@ function App() {
                 <Route path="/contact"  element={<Contact/>}/>
                 <Route path="*" element={<NoPage/>}/>
             </Route>
-            
-            <Route path="/admin" element={<AdminLayout/>}>
-                <Route index element={<DashboardLogin/>}/>
-                <Route path="/admin/dashboard" element={<Dashboard/>}/>
-            </Route>
-            
+            <Route path="/admin" element={<DashboardLogin/>}/>
           </Routes>
           </AnimatePresence>
       </BrowserRouter>
