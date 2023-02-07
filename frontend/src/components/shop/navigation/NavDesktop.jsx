@@ -1,15 +1,18 @@
 import React from 'react'
 import {useState} from 'react'
 import {NavLink} from 'react-router-dom'
+import {motion} from 'framer-motion'
 import SearchBar from '../searchFilter/SearchBar.jsx'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import {useLocation} from 'react-router-dom';
 
 const NavDesktop = ({toggleNav, setnavOpen}) => {
- 
+
+  let location = useLocation();
   let activeClass = "text-stone-200 pr-4 pl-4"
   let unactiveClass = "text-stone-400 pr-4 pl-4"
   let activeHome = "text-stone-200, setnavOpen"
@@ -21,9 +24,18 @@ const NavDesktop = ({toggleNav, setnavOpen}) => {
         <div className="align-middle justify-items-center mr-4">
           <NavLink onClick={()=>setnavOpen(false)} to="/"><p className="font-bold text-2xl text-white">LOGO</p></NavLink>
         </div>
-        <div className="flex">
-          <SearchBar/>
-        </div>    
+          
+        {location.pathname.includes("products") &&
+          <motion.div
+            initial={{ opacity: 0, x:-200 }}
+            animate={{ opacity: 1, x:0}}
+            transition={{ duration: 2 }}
+            className="flex"
+          >
+            <SearchBar/>
+          </motion.div>
+        }
+
         <div className="flex justify-between">
           <NavLink onClick={()=>setnavOpen(false)} to="/" className={({ isActive }) => isActive ? activeClass : unactiveClass}>
             HOME

@@ -28,16 +28,16 @@ const Navigation = () => {
       priceString = priceString.slice(1)
       let nextPriceInt = parseInt(priceString);
       priceInt += nextPriceInt;
-      console.log(priceInt);
     });
     totalPriceString = "$" + priceInt.toString();
     setSubTotal(totalPriceString);
   }
 
   return (
-    <>
+    <>  
       <NavDesktop toggleNav={toggleNav} navOpen={navOpen} setnavOpen={setnavOpen}/>
-      <SideBar toggleNav={toggleNav} calculateSubTotal={calculateSubTotal} navOpen={navOpen} cartArray={cartArray} subTotal={subTotal}
+
+      <SideBar toggleNav={toggleNav} calculateSubTotal={calculateSubTotal} setnavOpen={setnavOpen} navOpen={navOpen} cartArray={cartArray} subTotal={subTotal}
       setCart={setCart} setSubTotal={setSubTotal}/>
       
       <div className={`${ navOpen ? 'bg-black z-10 absolute right-0 h-full w-full opacity-75 blur-3xl' 

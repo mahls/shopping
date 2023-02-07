@@ -3,7 +3,6 @@ import {motion} from 'framer-motion'
 import {useRef} from 'react'
 
 const Contact = () => {
-    
 
   const deliveryRef = useRef(null);
   const securityRef = useRef(null);

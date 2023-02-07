@@ -25,7 +25,6 @@ const Products = () => {
     setTimeout(() => {
       setloading(false);
     }, 1500);
-    console.log(searchFilterContext);
   }, [])
 
   return (
